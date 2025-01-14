@@ -15,8 +15,9 @@ This web app will allow anyone to login and plan out their day, as well as invit
 
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
->  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
+[//]: # (> [!NOTE])
+
+[//]: # (>  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example]&#40;https://github.com/webprogramming260/startup-example/blob/main/README.md&#41; for inspiration.)
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
@@ -24,7 +25,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] A concise and compelling elevator pitch
 - [x] Description of key features
 - [x] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -34,21 +35,30 @@ DayFlow is designed for busy professionals and students who want to boost their 
 
 In fact, early users report a 30% increase in daily task completion and significantly reduced stress levels. Ready to transform your daily routine? Try DayFlow today and experience the difference a well-organized day can make.
 
-### Design
+### Design Mockups
 
+This is the landing page.  
+<img alt="Home Page" src="Photos/DayFlow(3).jpg"/><br>
+This is the login page.  
+<img alt="Login Page" src="Photos/DayFlow(2).jpg"/><br>
+This is the general calendar page where you can view your day.  
+<img alt="Overall Calendar" src="Photos/DayFlow(1).jpg"/><br>
+This is the page where you can create an event.  
 <img alt="Event Creation" src="Photos/DayFlow.jpg"/>
-<img alt="Overall Calendar" src="Photos/DayFlow(1).jpg"/>
-<img alt="Login Page" src="Photos/DayFlow(2).jpg"/>
-<img alt="Home Page" src="Photos/DayFlow(3).jpg"/>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+[//]: # ()
+[//]: # (```mermaid)
+
+[//]: # (sequenceDiagram)
+
+[//]: # (    actor You)
+
+[//]: # (    actor Website)
+
+[//]: # (    You->>Website: Replace this with your design)
+
+[//]: # (```)
 
 ### Key features
 
