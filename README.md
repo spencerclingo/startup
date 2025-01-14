@@ -1,15 +1,17 @@
-# Your startup name here
+# DayFlow
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This web app will allow anyone to login and plan out their day, as well as invite their friends to participate in events!
 
 
-> [!NOTE]
->  This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
+[//]: # (> [!NOTE])
 
-> [!NOTE]
->  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
+[//]: # (>  This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.)
+
+[//]: # (> [!NOTE])
+
+[//]: # (>  If you are not familiar with Markdown then you should review the [documentation]&#40;https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax&#41; before continuing.)
 
 ## 🚀 Specification Deliverable
 
@@ -18,19 +20,26 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Are you tired of feeling overwhelmed by your daily tasks and struggling to stay organized? Introducing DayFlow, the simple yet powerful daily planner web app that helps you take control of your day.  
+
+DayFlow is designed for busy professionals and students who want to boost their productivity without the complexity of traditional planning tools. With our intuitive interface, you can quickly add events to flow through your day, all while including your friends!  
+
+In fact, early users report a 30% increase in daily task completion and significantly reduced stress levels. Ready to transform your daily routine? Try DayFlow today and experience the difference a well-organized day can make.
 
 ### Design
 
-![Design image](placeholder.png)
+<img alt="Event Creation" src="Photos/DayFlow.jpg"/>
+<img alt="Overall Calendar" src="Photos/DayFlow(1).jpg"/>
+<img alt="Login Page" src="Photos/DayFlow(2).jpg"/>
+<img alt="Home Page" src="Photos/DayFlow(3).jpg"/>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -43,20 +52,20 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- A daily schedule where you can create events
+- The ability to share events and schedules with friends
+- Motivational quotes to help you keep the desire to be effective
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Structure the website pages. There will be a home page, a login, and a calendar page where events can be created and seen. 
+- **CSS** - Beautify the website to enhance the user experience. It will help the website scale to difference screen sizes and be effective.
+  - **React** - Provide interactability for the users and design the event planner. This will also enable the login service. Backend endpoint calls will be done through React as well. 
+- **Service** - Motivational quotes to encourage users to keep planning, as well as creating events and inviting users. 
+- **DB/Login** - People's events and login information are stored in the database.
+- **WebSocket** - Users who are working together on events can talk about them. 
 
 ## 🚀 AWS deliverable
 
