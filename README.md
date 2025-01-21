@@ -72,7 +72,7 @@ I am going to use the required technologies in the following ways.
 
 - **HTML** - Structure the website pages. There will be a home page, a login, and a calendar page where events can be created and seen. 
 - **CSS** - Beautify the website to enhance the user experience. It will help the website scale to difference screen sizes and be effective.
-  - **React** - Provide interactability for the users and design the event planner. This will also enable the login service. Backend endpoint calls will be done through React as well. 
+- **React** - Provide interactability for the users and design the event planner. This will also enable the login service. Backend endpoint calls will be done through React as well. 
 - **Service** - Motivational quotes to encourage users to keep planning, as well as creating events and inviting users. 
 - **DB/Login** - People's events and login information are stored in the database.
 - **WebSocket** - Users who are working together on events can talk about them. 
@@ -81,7 +81,7 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [DayFlow](http://dayflow.click).
 
 ## 🚀 HTML deliverable
 
