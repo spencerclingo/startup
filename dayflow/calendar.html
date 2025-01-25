@@ -8,16 +8,27 @@
 <body style="border:0; margin:0; padding:0">
     <header class="header">
         <nav>
-            <img src="Photos/DayFlow logo.png" height="50px" width="50px" alt="logo"/>
+            <div class="logo">
+                <img src="Photos/DayFlow logo.png" height="50px" width="50px" alt="logo"/>
+            </div>
             <div class="logo-text">DayFlow</div>
+            <div class="nav">
+                <a href="calendar.html" class="nav-link">Event</a>
+                <a href="task.html" class="nav-link">Task</a>
+            </div>
         </nav>
     </header>
     <div class="container">
         <div style="flex:1">
-            <div class="button-container">
+            <div class="multi-button-container">
                 <a href="event.html">
-                    <button style="font-size: 30px" class="button">
+                    <button style="font-size: 20px" class="button">
                         Create Event
+                    </button>
+                </a>
+                <a href="task.html">
+                    <button style="font-size: 20px" class="button">
+                        Create Task
                     </button>
                 </a>
             </div>
@@ -27,7 +38,7 @@
                 <p>-Jim Rohn</p>
             </div>
         </div>
-        <table style="margin-right: 7%; margin-top: 10px; margin-bottom: 10px">
+        <table style="margin-right: 7%; margin-top: 10px; margin-bottom: 10px" id="table">
             <tr>
                 <td>6:00am</td>
                 <td></td>

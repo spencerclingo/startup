@@ -30,7 +30,7 @@ footer {
     place-items: center;
 }
 
-table {
+#table {
     border-collapse: collapse;
     width: 43%;
     margin-right: 7%;
@@ -38,17 +38,17 @@ table {
     margin-bottom: 10px
 }
 
-td {
+#table td {
     border: 1px solid black;
     padding: 4px;
     font-size: 12px;
 }
 
-table td:nth-child(2) {
+#table td:nth-child(2) {
     width: 90%;
 }
 
-table td:nth-child(1) {
+#table td:nth-child(1) {
     width: 30px;
 }
 
@@ -58,9 +58,9 @@ table td:nth-child(1) {
 }
 
 .button-container {
-    position: relative;
-    left: 62%;
-    transform: translateX(-50%);
+    display: flex;
+    padding-right: 5%;
+    justify-content: center;
 }
 
 .header {
@@ -93,4 +93,44 @@ table td:nth-child(1) {
 .event {
     background-color: #efaaaa;
     text-align: center;
+}
+
+.multi-button-container {
+    display: flex;
+    padding-left: 5%;
+    justify-content: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border:0
+}
+
+#task {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#task td:nth-child(1) {
+    width: 50%;
+}
+
+#task td:nth-child(2) {
+    width: 50%;
+}
+
+.nav {
+    font-size: 20px;
+    margin-top: 12px;
+    padding-left: 35px;
+}
+
+.logo {
+    padding-top: 10px;
+}
+
+.nav-link {
+    padding: 3px;
 }

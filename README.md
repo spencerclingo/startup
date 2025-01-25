@@ -87,15 +87,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I designed the skeleton of each page myself, using body, nav, main, header, footer, div, and table tags. 
+- [x] **Proper HTML element usage** - I used the tags as they are designed to be used. 
+- [x] **Links** - The buttons link to the expected pages. Home->Login->Main->Event Creation->Main
+- [x] **Text** - Necessary explanations are present. 
+- [x] **3rd party API placeholder** - Quotes will come from a 3rd party API.
+- [ ] **Images** - I designed a logo with the help of AI and several other websites. I will be re-designing it in the future with Adobe Illustrator.
+- [ ] **Login placeholder** - The login page is present. 
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [ ] **WebSocket placeholder** - Where users can discuss events together is present. 
 
 ## 🚀 CSS deliverable
 
