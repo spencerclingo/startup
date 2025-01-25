@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.content {
+    flex: 1;
+    margin-left: 10%;
+}
+
+.field {
+    padding-bottom: 5px;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.main {
+    flex-grow: 1;
+    display: grid;
+    place-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 43%;
+    margin-right: 7%;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+td {
+    border: 1px solid black;
+    padding: 4px;
+    font-size: 12px;
+}
+
+table td:nth-child(2) {
+    width: 90%;
+}
+
+table td:nth-child(1) {
+    width: 30px;
+}
+
+.button {
+    margin-left: 10%;
+    margin-right: 30%;
+}
+
+.button-container {
+    position: relative;
+    left: 62%;
+    transform: translateX(-50%);
+}
