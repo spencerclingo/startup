@@ -4,6 +4,10 @@
     padding-bottom: 10px;
 }
 
+.main_container {
+    display: flex;
+}
+
 .content {
     flex: 1;
     margin-left: 10%;
@@ -133,4 +137,10 @@ body {
 
 .nav-link {
     padding: 3px;
+}
+
+.username {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
