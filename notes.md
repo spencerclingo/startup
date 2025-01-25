@@ -20,55 +20,84 @@ No problems worked just like it said in the [instruction](https://github.com/web
 
 ## HTML
 
-This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.
-
+This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between pages work great using the `a` element combined with `button`.
 
 The part I didn't like was the duplication of the header and footer code. This is messy, but it will get cleaned up when I get to React.
 
+Creating and duplicating the table is also a hassle, I hope that React will be able to streamline time generation.  
+
 ## CSS
 
-This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
+I really enjoy using CSS combined with because of the challenge it presents. Elements don't always respond the way you expect to different styles. However, with enough work, they start to align with your will (although aligning center can be harder). It looks great on all kinds of screen sizes.
 
-Bootstrap seems a bit like magic. It styles things nicely, but is very opinionated. You either do, or you do not. There doesn't seem to be much in between.
+[//]: # ()
+[//]: # (```html)
 
-I did like the navbar it made it super easy to build a responsive header.
+[//]: # (      <nav class="navbar navbar-expand-lg bg-body-tertiary">)
 
-```html
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand">
-            <img src="logo.svg" width="30" height="30" class="d-inline-block align-top" alt="" />
-            Calmer
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="play.html">Play</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-```
+[//]: # (        <div class="container-fluid">)
 
-I also used SVG to make the icon and logo for the app. This turned out to be a piece of cake.
+[//]: # (          <a class="navbar-brand">)
 
-```html
-<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100" height="100" fill="#0066aa" rx="10" ry="10" />
-  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="72" font-family="Arial" fill="white">C</text>
-</svg>
-```
+[//]: # (            <img src="logo.svg" width="30" height="30" class="d-inline-block align-top" alt="" />)
+
+[//]: # (            Calmer)
+
+[//]: # (          </a>)
+
+[//]: # (          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">)
+
+[//]: # (            <span class="navbar-toggler-icon"></span>)
+
+[//]: # (          </button>)
+
+[//]: # (          <div class="collapse navbar-collapse" id="navbarSupportedContent">)
+
+[//]: # (            <ul class="navbar-nav me-auto mb-2 mb-lg-0">)
+
+[//]: # (              <li class="nav-item">)
+
+[//]: # (                <a class="nav-link active" href="play.html">Play</a>)
+
+[//]: # (              </li>)
+
+[//]: # (              <li class="nav-item">)
+
+[//]: # (                <a class="nav-link" href="about.html">About</a>)
+
+[//]: # (              </li>)
+
+[//]: # (              <li class="nav-item">)
+
+[//]: # (                <a class="nav-link" href="index.html">Logout</a>)
+
+[//]: # (              </li>)
+
+[//]: # (            </ul>)
+
+[//]: # (          </div>)
+
+[//]: # (        </div>)
+
+[//]: # (      </nav>)
+
+[//]: # (    </header>)
+
+[//]: # (```)
+
+I used AI to help me make a temporary logo. But, I plan on getting a new logo from Adobe Illustrator in the future.
+
+[//]: # (```html)
+
+[//]: # (<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">)
+
+[//]: # (  <rect width="100" height="100" fill="#0066aa" rx="10" ry="10" />)
+
+[//]: # (  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="72" font-family="Arial" fill="white">C</text>)
+
+[//]: # (</svg>)
+
+[//]: # (```)
 
 ## React Part 1: Routing
 

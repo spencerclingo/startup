@@ -92,16 +92,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - The buttons link to the expected pages. Home->Login->Main->Event Creation->Main
 - [x] **Text** - Necessary explanations are present. 
 - [x] **3rd party API placeholder** - Quotes will come from a 3rd party API.
-- [ ] **Images** - I designed a logo with the help of AI and several other websites. I will be re-designing it in the future with Adobe Illustrator.
-- [ ] **Login placeholder** - The login page is present. 
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - Where users can discuss events together is present. 
+- [x] **Images** - I designed a logo with the help of AI and several other websites. I will be re-designing it in the future with Adobe Illustrator.
+- [x] **Login placeholder** - The login page is present. 
+- [x] **DB data placeholder** - Login, calendar, and task data will all be stored in the database. 
+- [x] **WebSocket placeholder** - Where users can discuss events together is present. 
 
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - I did not complete this part of the deliverable.
 - [ ] **Navigation elements** - I did not complete this part of the deliverable.
 - [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
 - [ ] **Application elements** - I did not complete this part of the deliverable.
