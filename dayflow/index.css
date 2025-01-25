@@ -62,3 +62,30 @@ table td:nth-child(1) {
     left: 62%;
     transform: translateX(-50%);
 }
+
+.header {
+    border: 0;
+    margin: 0;
+    padding: 10px;
+    background-color: lightblue;
+    font-size: 40px;
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.header nav {
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 40px;
+}

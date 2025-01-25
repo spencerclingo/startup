@@ -10,8 +10,9 @@
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 34.195.212.79
+I've done this before, but I have not ssh'ed into the system before to access the files.
+➜  ssh -i [key pair file] ubuntu@[yourdomainnamehere]
 
 ## Caddy
 
