@@ -1,6 +1,6 @@
 # CS 260 Notes
 
-[My startup - Simon](https://simon.cs260.click)
+[My startup - DayFlow](https://startup.dayflow.click)
 
 ## Helpful links
 
@@ -12,11 +12,12 @@
 
 My IP address is: 34.195.212.79
 I've done this before, but I have not ssh'ed into the system before to access the files.
+
 ➜  ssh -i [key pair file] ubuntu@[yourdomainnamehere]
 
 ## Caddy
 
-No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
+No problems. It worked just like it said in the [instructions](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
 
 ## HTML
 
