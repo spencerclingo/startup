@@ -31,6 +31,8 @@ Creating and duplicating the table is also a hassle, I hope that React will be a
 
 I really enjoy using CSS combined with because of the challenge it presents. Elements don't always respond the way you expect to different styles. However, with enough work, they start to align with your will (although aligning center can be harder). It looks great on all kinds of screen sizes.
 
+I did learn that the form method POST causes issues if I don't yet have the backend set up. So for now, all forms are using GET. 
+
 [//]: # ()
 [//]: # (```html)
 

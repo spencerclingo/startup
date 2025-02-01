@@ -8,10 +8,10 @@
 <body class="body">
     <header class="header">
         <nav>
-            <div class="logo">
+            <a class="logo" href="calendar.html">
                 <img src="Photos/DayFlow logo.png" height="50px" width="50px" alt="logo"/>
-            </div>
-            <div class="logo-text">DayFlow</div>
+            </a>
+            <a class="logo-text" href="calendar.html">DayFlow</a>
             <div class="nav">
                 <a href="calendar.html" class="nav-link">Home</a>
             </div>
@@ -26,7 +26,10 @@
                             You can use this page to create tasks that don't necessarily need a time frame, but just need to be finished.
                         </p>
                     </div>
-                    <form method="post" >
+
+                    <!--TODO: Change this to POST once I have a backend-->
+
+                    <form method="get" action="calendar.html">
                         <div class="field">
                             <label>
                                 <input type="text" placeholder="task title" required/>
