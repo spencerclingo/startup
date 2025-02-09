@@ -13,7 +13,7 @@ export function Event() {
     return (
         <main style="text-align: center" className="main">
 
-            <!--TODO: Change this to POST once I have a backend-->
+            {/*TODO: Change this to POST once I have a backend*/}
 
             <form onSubmit={handleSubmit}>
                 <div className="field">
@@ -118,7 +118,7 @@ export function Event() {
                 </tr>
                 <tr>
                     <td>3:00pm</td>
-                    <!--Existing event from database-->
+                    {/*Existing event from database*/}
                     <td className="event">Class</td>
                 </tr>
                 <tr>

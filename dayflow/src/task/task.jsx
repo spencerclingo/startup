@@ -23,7 +23,7 @@ export function Task() {
                             </p>
                         </div>
 
-                        <!--TODO: Change this to POST once I have a backend-->
+                        {/*TODO: Change this to POST once I have a backend*/}
 
                         <form method="get" onSubmit={handleSubmit}>
                             <div className="field">
@@ -38,7 +38,7 @@ export function Task() {
                     </td>
                     <td>
                         <ul>
-                            <!--This is all from the database-->
+                            {/*This is all from the database-->*/}
                             <li><input type="checkbox" id="item1"/><label htmlFor="item1">Essay</label></li>
                             <li><input type="checkbox" id="item2"/><label htmlFor="item2">Call mom</label></li>
                             <li><input type="checkbox" id="item3"/><label htmlFor="item3">Math</label></li>

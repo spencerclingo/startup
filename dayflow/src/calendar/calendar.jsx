@@ -13,7 +13,7 @@ export function Calendar() {
                         <button style="font-size: 20px" className="button">
                             Create Event
                         </button>
-                    </>
+                    </NavLink>
                     <NavLink to="task">
                         <button style="font-size: 20px" className="button">
                             Create Task
@@ -103,7 +103,7 @@ export function Calendar() {
                 </tr>
                 <tr>
                     <td>3:00pm</td>
-                    <!--Existing event from database-->
+                    {/*Existing event from database-->*/}
                     <td className="event">Class</td>
                 </tr>
                 <tr>

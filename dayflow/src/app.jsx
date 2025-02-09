@@ -10,39 +10,39 @@ import { Landing } from './landing/landing';
 export default function App() {
     return (
         <BrowserRouter>
-        <div className='body'>
-            <header className="header">
-                <nav>
-                    <NavLink className="logo" to="calendar">
-                        <img src="../public/DayFlow%20logo.png" height="50px" width="50px" alt="logo"/>
-                    </NavLink>
-                    <NavLink className="logo-text" to="calendar">DayFlow</NavLink>
-                    <div className="nav">
-                        <NavLink to="calendar" className="nav-link">Home</NavLink>
-                        <NavLink to="event" className="nav-link">Event</NavLink>
-                        <NavLink to="task" className="nav-link">Task</NavLink>
+            <div className='body'>
+                <header className="header">
+                    <nav>
+                        <NavLink className="logo" to="calendar">
+                            <img src="../public/DayFlow%20logo.png" height="50px" width="50px" alt="logo"/>
+                        </NavLink>
+                        <NavLink className="logo-text" to="calendar">DayFlow</NavLink>
+                        <div className="nav">
+                            <NavLink to="calendar" className="nav-link">Home</NavLink>
+                            <NavLink to="event" className="nav-link">Event</NavLink>
+                            <NavLink to="task" className="nav-link">Task</NavLink>
+                        </div>
+                    </nav>
+                </header>
+
+                <Routes>
+                    <Route path='/' element={<Landing />} exact />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/calendar' element={<Calendar />} />
+                    <Route path='/event' element={<Event />} />
+                    <Route path='/task' element={<Task />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+
+                <footer>
+                    <div style="padding: 20px; background-color: lightblue; text-align: center">
+                        <p>Spencer Clingo</p>
+                        <a href="https://github.com/spencerclingo/startup">
+                            GitHub
+                        </a>
                     </div>
-                </nav>
-            </header>
-
-            <Routes>
-                <Route path='/' element={<Landing />} exact />
-                <Route path='/login' element={<Login />} />
-                <Route path='/calendar' element={<Calendar />} />
-                <Route path='/event' element={<Event />} />
-                <Route path='/task' element={<Task />} />
-                <Route path='*' element={<NotFound />} />
-            </Routes>
-
-            <footer>
-                <div style="padding: 20px; background-color: lightblue; text-align: center">
-                    <p>Spencer Clingo</p>
-                    <a href="https://github.com/spencerclingo/startup">
-                        GitHub
-                    </a>
-                </div>
-            </footer>
-        </div>
+                </footer>
+            </div>
         </BrowserRouter>
     );
 }
