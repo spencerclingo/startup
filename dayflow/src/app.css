@@ -26,6 +26,8 @@ footer {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    padding: 0;
+    border:0
 }
 
 .main {
@@ -112,12 +114,6 @@ footer {
     display: flex;
     padding-left: 5%;
     justify-content: center;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    border:0
 }
 
 #task {
