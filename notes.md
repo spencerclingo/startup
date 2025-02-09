@@ -33,6 +33,8 @@ I really enjoy using CSS combined with because of the challenge it presents. Ele
 
 I did learn that the form method POST causes issues if I don't yet have the backend set up. So for now, all forms are using GET. 
 
+I also learned about the !important tag, allowing elements to override previous style that might have been given.
+
 [//]: # ()
 [//]: # (```html)
 
@@ -88,7 +90,7 @@ I did learn that the form method POST causes issues if I don't yet have the back
 
 [//]: # (```)
 
-I used AI to help me make a temporary logo. But, I plan on getting a new logo from Adobe Illustrator in the future.
+I used AI to help me make a temporary logo. But, I plan on making a new logo with Adobe Illustrator in the future.
 
 [//]: # (```html)
 
