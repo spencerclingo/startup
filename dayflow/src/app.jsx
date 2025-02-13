@@ -10,11 +10,11 @@ import { Landing } from './landing/landing';
 export default function App() {
     return (
         <BrowserRouter>
-            <div className='body'>
+            <div className='body no-extra-space'>
                 <header className="header">
                     <nav>
                         <NavLink className="logo" to="calendar">
-                            <img src="../public/DayFlow%20logo.png" height="50px" width="50px" alt="logo"/>
+                            <img src="DayFlow%20logo.png" height="50px" width="50px" alt="logo"/>
                         </NavLink>
                         <NavLink className="logo-text" to="calendar">DayFlow</NavLink>
                         <div className="nav">
@@ -35,7 +35,7 @@ export default function App() {
                 </Routes>
 
                 <footer>
-                    <div style="padding: 20px; background-color: lightblue; text-align: center">
+                    <div className="footer_container">
                         <p>Spencer Clingo</p>
                         <a href="https://github.com/spencerclingo/startup">
                             GitHub

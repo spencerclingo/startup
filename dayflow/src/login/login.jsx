@@ -1,4 +1,5 @@
 import React from 'react';
+import '../app.css';
 import {useNavigate} from "react-router-dom";
 
 export function Login() {
@@ -11,7 +12,7 @@ export function Login() {
     };
 
     return (
-        <main style="text-align: center" className="main">
+        <main className="main login-main">
 
             <form onSubmit={handleSubmit}>
                 <div className="field">

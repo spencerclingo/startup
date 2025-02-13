@@ -1,11 +1,22 @@
 .container {
     display: flex;
+    justify-content: center;
     align-items: center;
     padding-bottom: 10px;
 }
 
 .main_container {
     display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+}
+
+.event_main_container {
+    text-align: center;
+    display: flex;
+    width: 100%
 }
 
 .content {
@@ -21,13 +32,25 @@ footer {
     margin-top: auto;
 }
 
+.footer_container {
+    padding: 20px;
+    background-color: lightblue;
+    text-align: center;
+}
+
 .body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    border:0
+    border: 0;
+}
+
+.no-extra-space {
+    margin: 0; !important;
+    padding: 0;!important;
+    border: 0; !important;
 }
 
 .main {
@@ -38,10 +61,11 @@ footer {
 
 #table {
     border-collapse: collapse;
-    width: 43%;
-    margin-right: 7%;
+    margin-right: 3%;
     margin-top: 10px;
     margin-bottom: 10px;
+    flex: 1;
+    max-width: 50%;
 }
 
 #table td {
@@ -109,7 +133,6 @@ footer {
 }
 
 
-
 .multi-button-container {
     display: flex;
     padding-left: 5%;
@@ -163,10 +186,80 @@ footer {
     color: #252525;
 }
 
-
-
 .username {
     text-align: center;
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+.task-table {
+    text-align: center;
+    vertical-align: middle
+}
+
+.text-task-explain {
+    margin: 20px 10px 10px 10px
+}
+
+.login-main {
+    text-align: center
+}
+
+.landing-container {
+    flex: 1;
+}
+
+.landing-button {
+    font-size: 30px;
+}
+
+.quote-box {
+    border: 1px solid black;
+    padding: 10px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+}
+
+.quote {
+    padding-top: 30px; border-color: black;
+}
+
+.calendar-table {
+    margin-right: 7%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.websocket-box {
+    padding: 25% 120px 35% 120px;
+    border: 1px solid black;
+    margin: 20px 20px
+}
+
+.event-full-width-container {
+    width:200px
+}
+
+.event-half-width-container {
+    width:90px
+}
+
+.calendar-main-container {
+    flex: 1;
+}
+
+.calendar-button {
+    font-size: 20px;
+}
+
+.left-box {
+    padding-top: 40px;
+    /*flex: 0 0 auto; !* Don't grow or shrink, stay at base size *!*/
+    /*margin-right: 10%;*/
+    /*!*width: 30%;*!*/
+    /*margin-left: 10%;*/
+    flex: 1;
+    justify-content: center;
 }

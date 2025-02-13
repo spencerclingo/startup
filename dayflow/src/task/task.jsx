@@ -1,5 +1,6 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import '../app.css';
+import {NavLink, useNavigate} from "react-router-dom";
 
 export function Task() {
     const navigate = useNavigate();
@@ -7,7 +8,7 @@ export function Task() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Perform any form validation or data processing here
-        navigate('/calendar');
+        // navigate('/calendar');
     };
 
     return (
@@ -15,9 +16,9 @@ export function Task() {
             <table width="100%" id="task">
                 <tbody>
                 <tr>
-                    <td style="text-align: center; vertical-align: middle">
+                    <td className="task-table">
                         <div className="info-box">
-                            <p style="margin: 20px 10px 10px 10px">
+                            <p className="text-task-explain">
                                 You can use this page to create tasks that don't necessarily need a time frame, but just
                                 need to be finished.
                             </p>
@@ -31,14 +32,12 @@ export function Task() {
                                     <input type="text" placeholder="task title" required/>
                                 </label>
                             </div>
-                            <NavLink to="calendar">
-                                <button type="submit">Submit</button>
-                            </NavLink>
+                            <button type="submit">Submit</button>
                         </form>
                     </td>
                     <td>
                         <ul>
-                            {/*This is all from the database-->*/}
+                            {/*This is all from the database*/}
                             <li><input type="checkbox" id="item1"/><label htmlFor="item1">Essay</label></li>
                             <li><input type="checkbox" id="item2"/><label htmlFor="item2">Call mom</label></li>
                             <li><input type="checkbox" id="item3"/><label htmlFor="item3">Math</label></li>

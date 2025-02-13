@@ -1,26 +1,27 @@
 import React from 'react';
+import '../app.css';
 import {NavLink} from "react-router-dom";
 
 export function Landing() {
     return (
         <main>
             <div className="container">
-                <div style="flex:1">
+                <div className="landing-container">
                     <div className="button-container">
-                        <NavLink to="login">
-                            <button style="font-size: 30px" className="button">
+                        <NavLink to="/login">
+                            <button className="button landing-button">
                                 Login
                             </button>
                         </NavLink>
                     </div>
-                    <div style="border: 1px solid black; padding: 10px; width:75%; margin-left: auto; margin-right: auto; margin-top: 12px">
-                        <h3 style="padding-top: 30px; border-color: black">Quote:</h3>
+                    <div className="quote-box">
+                        <h3 className="quote">Quote:</h3>
                         {/*Quote from 3rd party API*/}
                         <p>Activity leads to productivity.</p>
                         <p>-Jim Rohn</p>
                     </div>
                 </div>
-                <table style="margin-right: 7%; margin-top: 10px; margin-bottom: 10px" id="table">
+                <table className="calendar-table" id="table">
                     <tbody>
                     <tr>
                         <td>6:00am</td>
