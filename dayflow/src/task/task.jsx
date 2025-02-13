@@ -7,8 +7,7 @@ export function Task() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Perform any form validation or data processing here
-        // navigate('/calendar');
+        {/*TODO: Change this to POST once I have a backend*/}
     };
 
     return (
@@ -24,7 +23,7 @@ export function Task() {
                             </p>
                         </div>
 
-                        {/*TODO: Change this to POST once I have a backend*/}
+
 
                         <form method="get" onSubmit={handleSubmit}>
                             <div className="field">

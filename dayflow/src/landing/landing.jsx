@@ -1,6 +1,7 @@
 import React from 'react';
 import '../app.css';
 import {NavLink} from "react-router-dom";
+import DailySchedule from "../components/dailySchedule";
 
 export function Landing() {
     return (
@@ -21,126 +22,9 @@ export function Landing() {
                         <p>-Jim Rohn</p>
                     </div>
                 </div>
-                <table className="calendar-table" id="table">
-                    <tbody>
-                    <tr>
-                        <td>6:00am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>6:30am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>7:00am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>7:30am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>8:00am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>8:30am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>9:00am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>9:30am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>10:00am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>10:30am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>11:00am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>11:30am</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>12:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>12:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>1:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>1:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>2:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>2:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>3:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>3:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>4:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>4:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>5:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>5:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>6:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>6:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>7:00pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>7:30pm</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>8:00pm</td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                <DailySchedule /> {}
+
             </div>
         </main>
     );

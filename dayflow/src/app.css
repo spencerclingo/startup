@@ -243,7 +243,7 @@ footer {
 }
 
 .event-half-width-container {
-    width:90px
+    width:93px
 }
 
 .calendar-main-container {
@@ -262,4 +262,8 @@ footer {
     /*margin-left: 10%;*/
     flex: 1;
     justify-content: center;
+}
+
+.login-button {
+    margin: 3px;
 }

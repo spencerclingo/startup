@@ -25,8 +25,8 @@ export function Login() {
                         <input type="password" placeholder="password"/>
                     </label>
                 </div>
-                <button type="submit">Login</button>
-                <button type="submit">Create</button>
+                <button className="login-button" type="submit">Login</button>
+                <button className="login-button" type="submit">Create</button>
             </form>
         </main>
     );
