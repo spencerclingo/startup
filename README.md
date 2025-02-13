@@ -106,15 +106,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Responsive to window resizing** - Website looks great on all window sizes. 
 - [x] **Application elements** - All application elements have been created and styled.
 - [x] **Application text content** - Application has applicable text content, styled to look normal.
-- [x] **Application images** - I have an image. 
+- [x] **Application images** - I have an image and a favicon.
 
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [x] **Components** - I did not complete this part of the deliverable.
-- [x] **Router** - Routing between login and voting components.
+- [x] **Bundled using Vite** - I re-wrote my HTML to be React components using Vite. 
+- [x] **Components** - Each page is its own React component, as well as the table. The table only has one declaration and is called by the other components to display on the pages.
+- [x] **Router** - Each page seamlessly transfers, no longer referencing HTML files but JSX files. 
 
 ## 🚀 React part 2: Reactivity
 

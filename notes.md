@@ -106,7 +106,9 @@ I used AI to help me make a temporary logo. But, I plan on making a new logo wit
 
 ## React Part 1: Routing
 
-Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.
+Setting up Vite and React was pretty simple. I tend to use in-line styling for my HTML if only one element requires something or if I know that something is quick. However, React does not like in-line styling. So, I had to refactor everything to be in classes and IDs. This wasn't too bad, but took some extra time. 
+
+I also learned how to set up a callable element, such that different pages can call the same table to be printed in the same way. This makes it very convenient to change. 
 
 ## React Part 2: Reactivity
 
