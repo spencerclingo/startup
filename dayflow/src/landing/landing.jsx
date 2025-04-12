@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../app.css';
 import {NavLink} from "react-router-dom";
 import DailySchedule from "../components/dailySchedule";
 
 export function Landing() {
+    const [events] = useState([]);
+
     return (
         <main>
             <div className="container">
@@ -23,7 +25,7 @@ export function Landing() {
                     </div>
                 </div>
 
-                <DailySchedule /> {}
+                <DailySchedule events={events}/> {}
 
             </div>
         </main>

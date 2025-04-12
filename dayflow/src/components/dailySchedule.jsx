@@ -1,130 +1,69 @@
-import React from "react";
+import React from 'react';
 import '../app.css';
 
-function DailySchedule() {
+function DailySchedule({ events }) {
+    // Helper function to find events for a specific time slot
+    const getEventsForTimeSlot = (time) => {
+        return events.filter((event) => {
+            const startTime = parseTime(event.start_time);
+            const endTime = parseTime(event.end_time);
+            const currentTime = parseTime(time);
+
+            return currentTime >= startTime && currentTime < endTime;
+        });
+    };
+
+    // Helper function to parse time (e.g., '6:00am') into minutes since midnight
+    const parseTime = (time) => {
+        const [hour, minutePart] = time.split(":");
+        const minutes = parseInt(minutePart.slice(0, 2), 10);
+        const isAM = time.includes("am");
+
+        let hours = parseInt(hour, 10);
+        if (!isAM && hours !== 12) {
+            hours += 12; // Convert PM times to 24-hour format
+        }
+        if (isAM && hours === 12) {
+            hours = 0; // Convert 12 AM to midnight
+        }
+
+        return hours * 60 + minutes; // Return total minutes since midnight
+    };
+
     return (
-    <table className="calendar-table" id="table">
-        <tbody>
-        <tr>
-            <td>6:00am</td>
-            <td id="6am"></td>
-        </tr>
-        <tr>
-            <td>6:30am</td>
-            <td id="63am"></td>
-        </tr>
-        <tr>
-            <td>7:00am</td>
-            <td id="7am"></td>
-        </tr>
-        <tr>
-            <td>7:30am</td>
-            <td id="73am"></td>
-        </tr>
-        <tr>
-            <td>8:00am</td>
-            <td id="8am"></td>
-        </tr>
-        <tr>
-            <td>8:30am</td>
-            <td id="83am"></td>
-        </tr>
-        <tr>
-            <td>9:00am</td>
-            <td id="9am"></td>
-        </tr>
-        <tr>
-            <td>9:30am</td>
-            <td id="93am"></td>
-        </tr>
-        <tr>
-            <td>10:00am</td>
-            <td id="10am"></td>
-        </tr>
-        <tr>
-            <td>10:30am</td>
-            <td id="103am"></td>
-        </tr>
-        <tr>
-            <td>11:00am</td>
-            <td id="11am"></td>
-        </tr>
-        <tr>
-            <td>11:30am</td>
-            <td id="113am"></td>
-        </tr>
-        <tr>
-            <td>12:00pm</td>
-            <td id="12pm"></td>
-        </tr>
-        <tr>
-            <td>12:30pm</td>
-            <td id="123pm"></td>
-        </tr>
-        <tr>
-            <td>1:00pm</td>
-            <td id="1pm"></td>
-        </tr>
-        <tr>
-            <td>1:30pm</td>
-            <td id="13pm"></td>
-        </tr>
-        <tr>
-            <td>2:00pm</td>
-            <td id="2pm"></td>
-        </tr>
-        <tr>
-            <td>2:30pm</td>
-            <td id="23pm"></td>
-        </tr>
-        <tr>
-            <td>3:00pm</td>
-            {/*Existing event from database*/}
-            <td className="event" id="3pm">Class</td>
-        </tr>
-        <tr>
-            <td>3:30pm</td>
-            <td className="event" id="33pm">Class</td>
-        </tr>
-        <tr>
-            <td>4:00pm</td>
-            <td className="event" id="4pm">Class</td>
-        </tr>
-        <tr>
-            <td>4:30pm</td>
-            <td className="event" id="43pm">Class</td>
-        </tr>
-        <tr>
-            <td>5:00pm</td>
-            <td id="5pm"></td>
-        </tr>
-        <tr>
-            <td>5:30pm</td>
-            <td id="53pm"></td>
-        </tr>
-        <tr>
-            <td>6:00pm</td>
-            <td id="6pm"></td>
-        </tr>
-        <tr>
-            <td>6:30pm</td>
-            <td id="63pm"></td>
-        </tr>
-        <tr>
-            <td>7:00pm</td>
-            <td id="7pm"></td>
-        </tr>
-        <tr>
-            <td>7:30pm</td>
-            <td id="73pm"></td>
-        </tr>
-        <tr>
-            <td>8:00pm</td>
-            <td id="8pm"></td>
-        </tr>
-        </tbody>
-    </table>
-);
+        <table className="calendar-table" id="table">
+            <tbody>
+            {[
+                '6:00am', '6:30am',
+                '7:00am', '7:30am',
+                '8:00am', '8:30am',
+                '9:00am', '9:30am',
+                '10:00am', '10:30am',
+                '11:00am', '11:30am',
+                '12:00pm', '12:30pm',
+                '1:00pm', '1:30pm',
+                '2:00pm', '2:30pm',
+                '3:00pm', '3:30pm',
+                '4:00pm', '4:30pm',
+                '5:00pm', '5:30pm',
+                '6:00pm', '6:30pm',
+                '7:00pm', '7:30pm',
+                '8:00pm', '8:30pm',
+                '9:00pm'
+                /* Add more times as needed */
+            ].map((time) => (
+                <tr key={time}>
+                    <td>{time}</td>
+                    <td id={time.replace(':', '').replace(' ', '')}>
+                        {getEventsForTimeSlot(time).map((event, index) => (
+                            <div key={index}>{event.event_name}</div>
+                        ))}
+                    </td>
+                </tr>
+            ))}
+            </tbody>
+        </table>
+    );
 }
 
 export default DailySchedule;

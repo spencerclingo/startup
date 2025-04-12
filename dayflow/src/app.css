@@ -26,6 +26,14 @@
 
 .field {
     padding-bottom: 5px;
+    font-family: "Yu Gothic Light", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.custom-dropdown {
+    font-family: "Yu Gothic Light", sans-serif;
+    font-size: 12px;
 }
 
 footer {

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../app.css';
 import {NavLink} from "react-router-dom";
 import DailySchedule from "../components/dailySchedule";
 
 export function Calendar() {
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        // TODO: Get rid of this to fetch the data from MongoDB
+        const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+        setEvents(storedEvents);
+    }, []);
+
     return (
         <main className="main_container">
             <div className="calendar-main-container">
@@ -28,7 +36,7 @@ export function Calendar() {
                     <p>-Jim Rohn</p>
                 </div>
             </div>
-            <DailySchedule /> {}
+            <DailySchedule events={events} /> {}
 
         </main>
     );
