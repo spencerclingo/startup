@@ -112,9 +112,11 @@ I also learned how to set up a callable element, such that different pages can c
 
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
+This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the data directly.
 
-Handling the toggling of the checkboxes was particularly interesting.
+Using delete buttons made it far easier to handle task finishing than check boxes. 
+
+I love being able to see that the code is going to be able to automatically change. 
 
 ```jsx
 <div className="input-group sound-button-container">

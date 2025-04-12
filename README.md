@@ -120,8 +120,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Events and tasks now appear when the user creates them. They are stored in an array stored locally and then in a cookie (also locally lol).
+- [x] **Hooks** - When the user logs in, the username state is updated along with the authState. Hooks are also set for event creation and task creation. 
 
 ## 🚀 Service deliverable
 
