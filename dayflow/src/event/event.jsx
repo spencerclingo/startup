@@ -6,15 +6,8 @@ export function Event() {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        const today = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
-        const lastSavedDate = localStorage.getItem("lastSavedDate");
-
-        if (lastSavedDate !== today) {
-            clearLocalStorageIfNewDay(); // Automatically clear if it's a new day
-        } else {
-            const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-            setEvents(storedEvents);
-        }
+        const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+        setEvents(storedEvents);
     }, []);
 
     const timeOptions = [
@@ -34,6 +27,11 @@ export function Event() {
 
         const startTime = parseTime(newEvent.start_time);
         const endTime = parseTime(newEvent.end_time);
+        const friendEmail = newEvent.email;
+
+        if (friendEmail) {
+            //TODO: This is the websocket stuff
+        }
 
         // Validate that end time is later than start time
         if (endTime <= startTime) {
@@ -48,9 +46,6 @@ export function Event() {
 
         // Update state
         setEvents(updatedEvents);
-
-        const today = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
-        localStorage.setItem("lastSavedDate", today);
 
         console.log('Event saved:', newEvent);
     };
@@ -81,8 +76,6 @@ export function Event() {
     return (
         <div className="container">
             <main className="event_main_container">
-
-
                 <div className="left-box">
                     <div>
                         <form onSubmit={handleSubmit}>
@@ -101,8 +94,8 @@ export function Event() {
                                         </option>
                                     ))}
                                 </select>
-                                -
-                                <label>End Time:</label>
+                                {/*<p className="newLine">-</p>*/}
+                                <label className="end-time">End Time:</label>
                                 <select name="end_time" required className="custom-dropdown">
                                     {timeOptions.map((time) => (
                                         <option key={time} value={time}>

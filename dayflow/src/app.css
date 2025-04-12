@@ -26,14 +26,19 @@
 
 .field {
     padding-bottom: 5px;
-    font-family: "Yu Gothic Light", sans-serif;
-    font-weight: bold;
-    font-size: 12px;
+    font-family: "Roboto", sans-serif;
+    /*font-weight: bold;*/
+    /*font-size: 12px;*/
 }
 
 .custom-dropdown {
-    font-family: "Yu Gothic Light", sans-serif;
-    font-size: 12px;
+    font-family: "Roboto", sans-serif;
+    margin-left: 5px;
+    /*font-size: 12px;*/
+}
+
+.end-time {
+    margin-left: 5px;
 }
 
 footer {
@@ -85,6 +90,12 @@ footer {
 #table td:nth-child(1) {
     width: 30px;
     background-color: #f3f3ff;
+    /*font-weight: bold;*/
+    font-family: "Roboto", sans-serif;
+}
+
+#table td:nth-child(2) {
+    font-family: "Merriweather", sans-serif;
 }
 
 .calendar td:nth-child(2) {
@@ -243,7 +254,8 @@ footer {
 .websocket-box {
     padding: 25% 120px 35% 120px;
     border: 1px solid black;
-    margin: 20px 20px
+    margin: 20px 20px;
+    font-family: "Trebuchet MS", sans-serif;
 }
 
 .event-full-width-container {
