@@ -6,8 +6,33 @@ import { Calendar } from './calendar/calendar';
 import { Event } from './event/event';
 import { Task } from './task/task';
 import { Landing } from './landing/landing';
+import {AuthState} from "./login/authState";
 
 export default function App() {
+    // const [authState, setAuthState] = React.useState(
+    //     localStorage.getItem('username') ? AuthState.Authenticated : AuthState.Unauthenticated
+    // );
+    const [username, setUserName] = React.useState(localStorage.getItem('username') || '');
+    // const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
+    // const [authState, setAuthState] = React.useState(currentAuthState);
+    const [authState, setAuthState] = React.useState(() => {
+        try {
+            return JSON.parse(localStorage.getItem('authentication')) || AuthState.Unauthenticated;
+        } catch {
+            return AuthState.Unauthenticated;
+        }
+    });
+
+    const handleSetUserName = (username) => {
+        setUserName(username);
+        localStorage.setItem('username', username);
+    };
+
+    const handleSetAuthState = (authState) => {
+        setAuthState(authState);
+        localStorage.setItem('authState', JSON.stringify(authState));
+    }
+
     return (
         <BrowserRouter>
             <div className='body no-extra-space'>
@@ -18,16 +43,25 @@ export default function App() {
                         </NavLink>
                         <NavLink className="logo-text" to="calendar">DayFlow</NavLink>
                         <div className="nav">
-                            <NavLink to="calendar" className="nav-link">Home</NavLink>
-                            <NavLink to="event" className="nav-link">Event</NavLink>
-                            <NavLink to="task" className="nav-link">Task</NavLink>
+                            {authState === AuthState.Authenticated && (
+                                <NavLink to="calendar" className="nav-link">Home</NavLink>
+                            )}
+                            {authState === AuthState.Authenticated && (
+                                <NavLink to="event" className="nav-link">Event</NavLink>
+                            )}
+                            {authState === AuthState.Authenticated && (
+                                <NavLink to="task" className="nav-link">Task</NavLink>
+                            )}
                         </div>
                     </nav>
                 </header>
 
                 <Routes>
                     <Route path='/' element={<Landing />} exact />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/login' element={<Login
+                        onSetUserName={handleSetUserName}
+                        onSetAuthState={handleSetAuthState}
+                    />} exact />
                     <Route path='/calendar' element={<Calendar />} />
                     <Route path='/event' element={<Event />} />
                     <Route path='/task' element={<Task />} />

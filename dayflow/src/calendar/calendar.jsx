@@ -5,6 +5,7 @@ import DailySchedule from "../components/dailySchedule";
 
 export function Calendar() {
     const [events, setEvents] = useState([]);
+    const username = React.useState(localStorage.getItem('username') || '');
 
     useEffect(() => {
         // TODO: Get rid of this to fetch the data from MongoDB
@@ -17,7 +18,7 @@ export function Calendar() {
             <main className="event_main_container">
                 <div className="calendar-main-container">
                     <div className="username">
-                        <p>Hello Spencer!</p>
+                        <p>Hello {username}!</p>
                     </div>
                     <div className="multi-button-container">
                         <NavLink to="/event">
