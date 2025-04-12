@@ -4,6 +4,7 @@ import DailySchedule from '../components/dailySchedule';
 
 export function Event() {
     const [events, setEvents] = useState([]);
+    const [friendEmail, setFriendEmail] = useState('');
 
     useEffect(() => {
         const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
@@ -27,10 +28,11 @@ export function Event() {
 
         const startTime = parseTime(newEvent.start_time);
         const endTime = parseTime(newEvent.end_time);
-        const friendEmail = newEvent.email;
+        const email = newEvent.email;
 
-        if (friendEmail) {
+        if (email) {
             //TODO: This is the websocket stuff
+            setFriendEmail(String(email));
         }
 
         // Validate that end time is later than start time
@@ -48,6 +50,8 @@ export function Event() {
         setEvents(updatedEvents);
 
         console.log('Event saved:', newEvent);
+
+        event.target.reset();
     };
 
     const clearLocalStorageIfNewDay = () => {
@@ -136,7 +140,7 @@ export function Event() {
                         </button>
 
                         <div className="websocket-box">
-                            Talk to friend here
+                            {friendEmail || "Talk to planning friend here"}
                         </div>
                     </div>
                 </div>
