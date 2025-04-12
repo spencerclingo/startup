@@ -272,6 +272,15 @@ footer {
 
 .calendar-button {
     font-size: 20px;
+    margin-top: 12px;
+    background-color: #acd6e4;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 70%;
+    justify-content: center;
 }
 
 .left-box {
