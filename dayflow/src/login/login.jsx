@@ -56,6 +56,7 @@ export function Login({ onSetUserName }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setErrorMessage('');
+
         // Perform any form validation or data processing here
         const action = event.nativeEvent.submitter.name;
         const formData = new FormData(event.target);
@@ -72,7 +73,7 @@ export function Login({ onSetUserName }) {
 
             valid = await verifyUser(newEvent);
             if (!valid) {
-                localStorage.setItem("authentication", JSON.stringify(AuthState.Unauthenticated));
+                    localStorage.setItem("authentication", JSON.stringify(AuthState.Unauthenticated));
                 onSetAuthState(AuthState.Unauthenticated);
                 setErrorMessage('Invalid username or password. Please try again.');
                 return;

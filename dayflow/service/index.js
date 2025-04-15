@@ -26,7 +26,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Serve up the front-end static content hosting
-app.use(express.static('public'));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 // Router for service endpoints
 var apiRouter = express.Router();
@@ -183,20 +186,10 @@ apiRouter.get('/inspiration', async (req, res) => {
     }
 });
 
-// Default error handler
-app.use(function (err, req, res, next) {
-    res.status(500).send({ type: err.name, message: err.message });
+// Handle client-side routing - return index.html for all unknown routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-    console.log("Requested Path:", _req.path); // Logs the path of the request
-    console.log("Request Body:", _req.body);  // Logs the body of the request (if applicable)
-    console.log("Request method: ", _req.method);
-
-    res.send("Request logged");
-});
-
 
 async function createUser(username, password) {
     const passwordHash = await bcrypt.hash(password, 10);

@@ -33,13 +33,11 @@ export default function App() {
                         </NavLink>
                         <NavLink className="logo-text" to="calendar">DayFlow</NavLink>
                         <div className="nav">
-                            {authState === AuthState.Authenticated && (
-                                <>
-                                    <NavLink to="calendar" className="nav-link">Home</NavLink>
-                                    <NavLink to="event" className="nav-link">Event</NavLink>
-                                    <NavLink to="task" className="nav-link">Task</NavLink>
-                                </>
-                            )}
+                            <>
+                                <NavLink to="calendar" className="nav-link">Home</NavLink>
+                                <NavLink to="event" className="nav-link">Event</NavLink>
+                                <NavLink to="task" className="nav-link">Task</NavLink>
+                            </>
                         </div>
                     </nav>
                 </header>
