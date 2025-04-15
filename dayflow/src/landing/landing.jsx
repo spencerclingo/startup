@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../app.css';
 import {NavLink} from "react-router-dom";
 import DailySchedule from "../components/dailySchedule";
-import {useInspirationQuote} from "../components/fetchQuote";
+import {useInspirationQuote} from "../components/helper";
 
 export function Landing() {
     const { quote, loading, error } = useInspirationQuote();

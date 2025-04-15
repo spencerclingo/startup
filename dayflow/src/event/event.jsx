@@ -1,13 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import '../app.css';
 import DailySchedule from '../components/dailySchedule';
+import {useVerifyAuth} from "../components/helper";
+import {useNavigate} from "react-router-dom";
 
 export function Event() {
     const [events, setEvents] = useState([]);
     const [friendEmail, setFriendEmail] = useState('');
     const username = localStorage.getItem('username');
+    const navigate = useNavigate();
+    const { isLoading, isAuthenticated } = useVerifyAuth(username);
+
 
     useEffect( () => {
+        if (isLoading) return; // Wait for auth check to complete
+
+        if (!isAuthenticated) {
+            navigate('/login');
+            return;
+        }
+
         const f = async () => {
             let data;
             try {
@@ -35,7 +47,11 @@ export function Event() {
             setEvents(storedEvents);
         }
         f();
-    }, []);
+    }, [isLoading, isAuthenticated, navigate]);
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Show loading state
+    }
 
     const timeOptions = [
         "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am",

@@ -3,7 +3,7 @@ import '../app.css';
 import {useNavigate} from "react-router-dom";
 import {AuthState} from "./authState";
 
-export function Login({ onSetUserName, onSetAuthState }) {
+export function Login({ onSetUserName }) {
     const [errorMessage, setErrorMessage] = React.useState('');
     const navigate = useNavigate();
 
@@ -87,7 +87,6 @@ export function Login({ onSetUserName, onSetAuthState }) {
             valid = await verifyNewUser(newEvent);
             if (!valid) {
                 localStorage.setItem("authentication", JSON.stringify(AuthState.Unauthenticated));
-                onSetAuthState(AuthState.Unauthenticated);
                 setErrorMessage('User already registered. Please try again.');
                 return;
             }
@@ -100,7 +99,6 @@ export function Login({ onSetUserName, onSetAuthState }) {
 
             localStorage.setItem("username", username);
             onSetUserName(username);
-            onSetAuthState(AuthState.Authenticated);
             navigate('/calendar');
         }
     };

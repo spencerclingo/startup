@@ -12,6 +12,10 @@ let users = [];
 let events = [];
 let tasks = [];
 
+// I can't access APIs without this for some reason
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -79,32 +83,6 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
 });
 
-apiRouter.get('/auth/user', async (req, res) => {
-    const body = req.body;
-
-    try {
-        // Retrieve the token from cookies
-        const token = req.cookies[authCookieName];
-        if (!token) {
-            return res.status(401).send({ msg: 'Unauthorized: No token provided' });
-        }
-
-        // Find the user by token
-        const user = await findUser('token', token);
-        if (user && user.token === token && body.username === user.username) {
-            // Return only safe user data (e.g., username) to avoid exposing sensitive info
-            return res.status(200).send({ username: user.username });
-        }
-
-        // If no user is found, return 404
-        res.status(404).send({ msg: 'User not found' });
-    } catch (error) {
-        console.error('Error in /auth/user:', error);
-        res.status(500).send({ msg: 'Internal server error' });
-    }
-});
-
-
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
@@ -115,6 +93,10 @@ const verifyAuth = async (req, res, next) => {
         res.status(401).send({ msg: 'Unauthorized' });
     }
 };
+
+apiRouter.get('/auth/user', verifyAuth, async (req, res) => {
+    res.status(200).send("Authenticated")
+});
 
 // GetScores
 apiRouter.get('/events', verifyAuth, (req, res) => {
@@ -186,15 +168,15 @@ apiRouter.delete('/task', verifyAuth, (req, res) => {
 
 apiRouter.get('/inspiration', async (req, res) => {
     try {
-        console.log(1)
+        // console.log(1)
         const response = await fetch('https://api.quotable.io/random');
-        console.log(2)
+        // console.log(2)
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        console.log(3)
+        // console.log(3)
         const data = await response.json();
-        console.log(4)
+        // console.log(4)
         res.json({ quote: data.content, author: data.author });
-        console.log(5)
+        // console.log(5)
     } catch (error) {
         console.error('API Error:', error);
         res.status(500).json({ error: 'Failed to fetch quote' + error.msg });

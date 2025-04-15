@@ -36,3 +36,30 @@ export function useInspirationQuote() {
 
     return { quote, loading, error };
 }
+
+// helper.js
+export function useVerifyAuth(username) {
+    const [authState, setAuthState] = useState({
+        isLoading: true,
+        isAuthenticated: false,
+    });
+
+    useEffect(() => {
+        const verifyAuth = async () => {
+            try {
+                const response = await fetch('/api/auth/user', {
+                    credentials: 'include', // 👈 Send cookies
+                });
+                setAuthState({
+                    isLoading: false,
+                    isAuthenticated: response.ok, // True if status is 200-299
+                });
+            } catch (error) {
+                setAuthState({ isLoading: false, isAuthenticated: false });
+            }
+        };
+        verifyAuth();
+    }, [username]);
+
+    return authState;
+}

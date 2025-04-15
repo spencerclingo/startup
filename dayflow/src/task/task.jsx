@@ -1,12 +1,22 @@
 import React, {useEffect} from 'react';
 import '../app.css';
 import {NavLink, useNavigate} from "react-router-dom";
+import {useVerifyAuth} from "../components/helper";
 
 export function Task() {
     const [tasks, setTasks] = React.useState([]);
     const username = localStorage.getItem("username");
+    const navigate = useNavigate();
+    const { isLoading, isAuthenticated } = useVerifyAuth(username);
 
     useEffect(() => {
+        if (isLoading) return; // Wait for auth check to complete
+
+        if (!isAuthenticated) {
+            navigate('/login');
+            return;
+        }
+
         const f = async () => {
             let data;
             try {
@@ -26,7 +36,11 @@ export function Task() {
             setTasks(data);
         }
         f();
-    }, []);
+    }, [isLoading, isAuthenticated, navigate]);
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Show loading state
+    }
 
     const handleSubmit = async (task) => {
         task.preventDefault();
