@@ -137,3 +137,10 @@ I love being able to see that the code is going to be able to automatically chan
   ))}
 </div>
 ```
+## node.js/Express: Service
+
+This was harder than I thought it would be. Getting the endpoints just right and passing information around to get those endpoints working properly was very difficult. 
+
+I learned that useEffects can't be async, so if you need to make an asynchronous call, you need to wrap it in a function.
+
+I also learned that using Loading variables for calls that normally would be await'ed help if you don't think that your data will be collected immediately. 

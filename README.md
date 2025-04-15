@@ -127,11 +127,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I have a backend written in Node.js/Express that holds all the information for the front. 
+- [x] **Static middleware for frontend** - I have a middleware function that checks for authentic users. 
+- [x] **Calls to third party endpoints** - I make a call to a 3rd party quote API, Quotable. I wanted to do a different one but it may have been discontinued this month. 
+- [x] **Backend service endpoints** - I have endpoints for nearly every page in my backend. 
+- [x] **Frontend calls service endpoints** - Nearly every page makes at least one call to the backend endpoints. 
 
 ## 🚀 DB/Login deliverable
 
