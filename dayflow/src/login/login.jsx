@@ -4,10 +4,58 @@ import {useNavigate} from "react-router-dom";
 import {AuthState} from "./authState";
 
 export function Login({ onSetUserName, onSetAuthState }) {
+    const [errorMessage, setErrorMessage] = React.useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    async function verifyUser(formData) {
+        console.log("attempting login user side");
+
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+            console.log(data.msg);
+
+            return response.status === 200;
+
+            // return response.ok;
+        } catch (error) {
+            console.error('Error logging in: ', error)
+            return false;
+        }
+    }
+
+    async function verifyNewUser(formData) {
+        console.log("attempting create user side");
+
+        try {
+            const response = await fetch('/api/auth/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+            console.log(data.msg);
+
+            return response.ok;
+        } catch (error) {
+            console.error('Error logging in: ', error)
+            return false;
+        }
+    }
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        setErrorMessage('');
         // Perform any form validation or data processing here
         const action = event.nativeEvent.submitter.name;
         const formData = new FormData(event.target);
@@ -16,18 +64,19 @@ export function Login({ onSetUserName, onSetAuthState }) {
         let username = String(newEvent.username);
         const password = String(newEvent.password);
 
+        let valid;
+
         if (action === "login") {
             // Handle login logic
             console.log("Logging in...");
 
-            // Normally, I would check if the username matches the password in the database
-            // I don't have a database rn, so I can just let them through
-
-            // const valid = verifyUser(username, password);
-            // if (!valid) {
-            //      localStorage.setItem("authentication", JSON.stringify(AuthState.Unauthenticated));
-            //     return;
-            // }
+            valid = await verifyUser(newEvent);
+            if (!valid) {
+                localStorage.setItem("authentication", JSON.stringify(AuthState.Unauthenticated));
+                onSetAuthState(AuthState.Unauthenticated);
+                setErrorMessage('Invalid username or password. Please try again.');
+                return;
+            }
 
         } else if (action === "create") {
             // Handle account creation logic
@@ -35,38 +84,40 @@ export function Login({ onSetUserName, onSetAuthState }) {
             // Perform account creation logic or API call here
 
             // Verify username doesn't already exist
-            // const valid = verifyNewUser(username);
-            // if (!valid) {
-            //     return;
-            // }
-
-            // Put it into the database
-            // createUser(username, password);
+            valid = await verifyNewUser(newEvent);
+            if (!valid) {
+                localStorage.setItem("authentication", JSON.stringify(AuthState.Unauthenticated));
+                onSetAuthState(AuthState.Unauthenticated);
+                setErrorMessage('User already registered. Please try again.');
+                return;
+            }
         }
 
-        if (username.includes('@')) {
-            username = username.split('@')[0];
-        }
+        if (valid) {
+            if (username.includes('@')) {
+                username = username.split('@')[0];
+            }
 
-        localStorage.setItem("username", username);
-        onSetUserName(username);
-        localStorage.setItem("authentication", JSON.stringify(AuthState.Authenticated));
-        onSetAuthState(AuthState.Authenticated);
-        navigate('/calendar');
+            localStorage.setItem("username", username);
+            onSetUserName(username);
+            onSetAuthState(AuthState.Authenticated);
+            navigate('/calendar');
+        }
     };
 
     return (
         <main className="main login-main">
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
 
             <form onSubmit={handleSubmit}>
                 <div className="field">
                     <label>
-                        <input type="text" placeholder="your@email.com" name="username"/>
+                        <input type="text" placeholder="your@email.com" name="username" required/>
                     </label>
                 </div>
                 <div className="field">
                     <label>
-                        <input type="password" placeholder="password" name="password"/>
+                        <input type="password" placeholder="password" name="password" required/>
                     </label>
                 </div>
                 <button className="login-button" type="submit" name="login">Login</button>

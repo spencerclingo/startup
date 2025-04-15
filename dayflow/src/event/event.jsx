@@ -7,9 +7,34 @@ export function Event() {
     const [friendEmail, setFriendEmail] = useState('');
     const username = localStorage.getItem('username');
 
-    useEffect(() => {
-        const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-        setEvents(storedEvents);
+    useEffect( () => {
+        const f = async () => {
+            let data;
+            try {
+                const response = await fetch('/api/events', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                data = await response.json();
+                // console.log(data.msg);
+            } catch (error) {
+                console.log('Error deleting events: ', error.message);
+                console.log(error.stack);
+            }
+
+            let storedEvents;
+            if (data.msg === "Unauthorized") {
+                storedEvents = [];
+            } else {
+                storedEvents = data;
+            }
+
+            setEvents(storedEvents);
+        }
+        f();
     }, []);
 
     const timeOptions = [
@@ -20,7 +45,7 @@ export function Event() {
         "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm",
     ];
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Collect form data
@@ -30,6 +55,7 @@ export function Event() {
         const startTime = parseTime(newEvent.start_time);
         const endTime = parseTime(newEvent.end_time);
         const email = newEvent.email;
+        newEvent.username = username;
 
         if (email) {
             //TODO: This is the websocket stuff
@@ -42,9 +68,24 @@ export function Event() {
             return; // Prevent form submission
         }
 
-        // Save events to localStorage
+        let data;
+        try {
+            const response = await fetch('/api/event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newEvent),
+            });
+
+            data = await response.json();
+            console.log(data.msg);
+        } catch (error) {
+            console.error('Error creating event: ', error)
+            return;
+        }
+
         const updatedEvents = [...events, newEvent];
-        // TODO: Get rid of this to put the data into MongoDB
         localStorage.setItem("events", JSON.stringify(updatedEvents));
 
         // Update state
@@ -55,11 +96,27 @@ export function Event() {
         event.target.reset();
     };
 
-    const clearLocalStorageIfNewDay = () => {
+    const deleteUsersEvents = async () => {
         // Clear local storage and reset events
-        localStorage.clear();
+        try {
+            const response = await fetch('/api/events', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const data = await response.json();
+            console.log(data.msg);
+        } catch (error) {
+            console.log('Error deleting events: ', error.message);
+            console.log(error.stack);
+            return;
+        }
+
+        localStorage.setItem("events", JSON.stringify([]));
         setEvents([]);
-        console.log("Events cleared either by request or new day started");
+        // console.log("Events cleared");
     };
 
     const parseTime = (time) => {
@@ -127,7 +184,7 @@ export function Event() {
                             }}>Create Event</button>
                         </form>
 
-                        <button onClick={clearLocalStorageIfNewDay} style={{
+                        <button onClick={deleteUsersEvents} style={{
                             marginTop: '12px',
                             backgroundColor: '#e4acac',
                             color: 'black',

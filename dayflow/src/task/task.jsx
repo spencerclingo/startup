@@ -4,19 +4,53 @@ import {NavLink, useNavigate} from "react-router-dom";
 
 export function Task() {
     const [tasks, setTasks] = React.useState([]);
+    const username = localStorage.getItem("username");
 
     useEffect(() => {
-        const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        setTasks(storedTasks);
+        const f = async () => {
+            let data;
+            try {
+                const response = await fetch('/api/tasks', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                data = await response.json();
+            } catch (error) {
+                console.log('Error getting tasks: ', error.message);
+                console.log(error.stack);
+            }
+
+            setTasks(data);
+        }
+        f();
     }, []);
 
-    const handleSubmit = (task) => {
+    const handleSubmit = async (task) => {
         task.preventDefault();
 
         const formData = new FormData(task.target);
         const newTask = Object.fromEntries(formData.entries());
+        console.log(newTask);
+        newTask.username = username;
 
-        const title = newTask.title;
+        try {
+            const response = await fetch('/api/task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newTask),
+            });
+
+            const data = await response.json();
+            console.log(data.msg);
+        } catch (error) {
+            console.error('Error creating task: ', error)
+            return;
+        }
 
         const updatedTasks = [...tasks, newTask];
         localStorage.setItem('tasks', JSON.stringify(updatedTasks));
@@ -28,10 +62,36 @@ export function Task() {
         task.target.reset();
     };
 
-    const handleDelete = (indexToDelete) => {
-        const updatedTasks = tasks.filter((_, index) => index !== indexToDelete);
-        setTasks(updatedTasks);
-        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    const handleDelete = async (indexToDelete) => {
+        const title = tasks[indexToDelete].title
+        const username = tasks[indexToDelete].username
+
+        console.log("Need to delete: ", title, username)
+
+        const task = { title: title, username: username};
+
+        let data;
+        try {
+            const response = await fetch('/api/task', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(task),
+            });
+
+            data = await response.json();
+
+            if (response.status === 200) {
+                const updatedTasks = tasks.filter((_, index) => index !== indexToDelete);
+                setTasks(updatedTasks);
+                localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+            } else {
+                console.log('Error deleting task: ', response.status, data.msg);
+            }
+        } catch (error) {
+            console.error('Error deleting task: ', error)
+        }
     };
 
 

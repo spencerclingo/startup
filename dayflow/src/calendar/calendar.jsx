@@ -7,10 +7,34 @@ export function Calendar() {
     const [events, setEvents] = useState([]);
     const username = React.useState(localStorage.getItem('username') || '');
 
-    useEffect(() => {
-        // TODO: Get rid of this to fetch the data from MongoDB
-        const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-        setEvents(storedEvents);
+    useEffect( () => {
+        const f= async () => {
+            let data2;
+            try {
+                const response = await fetch('/api/events', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                data2 = await response.json();
+                // console.log(data2.msg);
+            } catch (error) {
+                console.log('Error getting events: ', error.message);
+                console.log(error.stack);
+            }
+
+            let storedEvents;
+            if (data2.msg === "Unauthorized") {
+                storedEvents = [];
+            } else {
+                storedEvents = data2;
+            }
+
+            setEvents(storedEvents);
+        }
+        f();
     }, []);
 
     return (
@@ -18,7 +42,7 @@ export function Calendar() {
             <main className="event_main_container">
                 <div className="calendar-main-container">
                     <div className="username">
-                        <p>Hello {username}!</p>
+                        {/*<p>Hello {username}!</p>*/}
                     </div>
                     <div className="multi-button-container">
                         <NavLink to="/event">

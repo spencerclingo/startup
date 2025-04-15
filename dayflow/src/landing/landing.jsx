@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../app.css';
 import {NavLink} from "react-router-dom";
 import DailySchedule from "../components/dailySchedule";
+import {useInspirationQuote} from "../components/fetchQuote";
 
 export function Landing() {
-    const [events] = useState([]);
+    const { quote, loading, error } = useInspirationQuote();
 
     return (
         <main>
@@ -20,12 +21,18 @@ export function Landing() {
                     <div className="quote-box">
                         <h3 className="quote">Quote:</h3>
                         {/*Quote from 3rd party API*/}
-                        <p>Activity leads to productivity.</p>
-                        <p>-Jim Rohn</p>
+                        {loading && <p>Loading...</p>}
+                        {error && <p>Error: {error}</p>}
+                        {!loading && !error && (
+                            <>
+                                <p>{quote.quote}</p>
+                                <p>- {quote.author}</p>
+                            </>
+                        )}
                     </div>
                 </div>
 
-                <DailySchedule events={events}/> {}
+                <DailySchedule events={[]}/> {}
 
             </div>
         </main>
