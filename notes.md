@@ -154,3 +154,11 @@ I learned that using that setAuthCookie function will automatically set a cookie
 The longest bug was probably because I forgot that I would need to update the authToken stored in the database otherwise a user would login, get a new auth token, and they would be rejected because their token doesn't match the database. 
 
 Another error I faced was making sure I was interpreting returned objects properly when I pinged the database. 
+
+## WebSocket
+
+This one was way easy. I'm not too sure how it works because I was just playing around with the example code and then it worked perfectly. 
+
+One issue is because the username is stored in a cookie, if two users in the same browser on the same machine connect, it replaces the username. 
+
+Removing the ability to customize a chatter's username was surprisingly difficult. It took some hackiness. 
