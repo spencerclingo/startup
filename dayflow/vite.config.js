@@ -7,7 +7,10 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3000', // Backend server
         changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+      '/ws': {
+        target: 'ws://localhost:3000', // Also websocket server
+        ws: true,
       },
     },
   },
