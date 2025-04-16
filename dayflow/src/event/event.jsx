@@ -3,13 +3,16 @@ import '../app.css';
 import DailySchedule from '../components/dailySchedule';
 import {useVerifyAuth} from "../components/helper";
 import {useNavigate} from "react-router-dom";
+import {ChatClient} from "../websocketComponents/chatClient";
+import {Chat} from "../websocketComponents/chat";
+import ReactDOM from "react-dom/client";
 
 export function Event() {
     const [events, setEvents] = useState([]);
-    const [friendEmail, setFriendEmail] = useState('');
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
     const { isLoading, isAuthenticated } = useVerifyAuth(username);
+    const [showChat, setShowChat] = React.useState(false);
 
 
     useEffect( () => {
@@ -70,13 +73,7 @@ export function Event() {
 
         const startTime = parseTime(newEvent.start_time);
         const endTime = parseTime(newEvent.end_time);
-        const email = newEvent.email;
         newEvent.username = username;
-
-        if (email) {
-            //TODO: This is the websocket stuff
-            setFriendEmail(String(email));
-        }
 
         // Validate that end time is later than start time
         if (endTime <= startTime) {
@@ -182,12 +179,6 @@ export function Event() {
                                     ))}
                                 </select>
                             </div>
-                            <div className="field">
-                                <label>
-                                    <input type="text" placeholder="Friend's Email Address" name="email"
-                                           className="event-full-width-container"/>
-                                </label>
-                            </div>
                             <button type="submit" style={{
                                 marginTop: '20px',
                                 backgroundColor: '#acd6e4',
@@ -214,7 +205,19 @@ export function Event() {
                         </button>
 
                         <div className="websocket-box">
-                            {friendEmail || "Talk to planning friend here"}
+                            {showChat ? <Chat webSocket={new ChatClient()} /> : <button onClick={() => setShowChat(true)} style={{
+                                    marginTop: '12px',
+                                    backgroundColor: '#ffe865',
+                                    color: 'black',
+                                    padding: '10px 20px',
+                                    borderRadius: '5px',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    width: '209px'
+                                }}>
+                                    Chat with other users
+                                </button>
+                            }
                         </div>
                     </div>
                 </div>
