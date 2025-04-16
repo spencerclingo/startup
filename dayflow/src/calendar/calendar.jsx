@@ -6,7 +6,7 @@ import {useVerifyAuth, useInspirationQuote} from "../components/helper";
 
 export function Calendar() {
     const [events, setEvents] = useState([]);
-    const username = React.useState(localStorage.getItem('username'));
+    const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
     const { quote, loading, error } = useInspirationQuote();
     const navigate = useNavigate();
     const { isLoading, isAuthenticated } = useVerifyAuth(username);

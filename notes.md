@@ -144,3 +144,13 @@ This was harder than I thought it would be. Getting the endpoints just right and
 I learned that useEffects can't be async, so if you need to make an asynchronous call, you need to wrap it in a function.
 
 I also learned that using Loading variables for calls that normally would be await'ed help if you don't think that your data will be collected immediately. 
+
+## MongoDB: Login/DB
+
+Connecting to the database was easier than I thought it would be because I set it up nicely in the previous project. However, I struggled with the difference between getting a user via username and getting them by token.
+
+I learned that using that setAuthCookie function will automatically set a cookie for the user and that cookie will be returned in the future, allowing you to access the same user. 
+
+The longest bug was probably because I forgot that I would need to update the authToken stored in the database otherwise a user would login, get a new auth token, and they would be rejected because their token doesn't match the database. 
+
+Another error I faced was making sure I was interpreting returned objects properly when I pinged the database. 

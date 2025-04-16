@@ -5,6 +5,29 @@ const uuid = require('uuid');
 // const {useState, useEffect} = require("react");
 const app = express();
 
+const { MongoClient } = require('mongodb')
+const config = require('./dbConfig.json');
+
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/?retryWrites=true&w=majority&appName=Cluster0`
+
+// Connect to DB Cluster
+const client = new MongoClient(url);
+
+async function testConnection() {
+    try {
+        await client.connect();
+        console.log("Connected successfully to MongoDB");
+    } catch (err) {
+        console.error("MongoDB connection error:", err);
+    }
+}
+testConnection();
+
+const db = client.db('dayflow');
+const collectionUsers = db.collection('users');
+const collectionEvents = db.collection('events');
+const collectionTasks = db.collection('tasks');
+
 const authCookieName = 'token';
 
 // The events and users are saved in memory and disappear whenever the service is restarted.
@@ -28,8 +51,6 @@ app.use(cookieParser());
 // Serve up the front-end static content hosting
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 
 // Router for service endpoints
 var apiRouter = express.Router();
@@ -59,22 +80,30 @@ apiRouter.post('/auth/create', async (req, res) => {
 apiRouter.post('/auth/login', async (req, res) => {
     // console.log("attempting login");
     const body = req.body;
+    // console.log(`Username in /auth/login: ${req.body.username}`);
 
     const user = await findUser('username', body.username);
     if (user) {
         if (await bcrypt.compare(body.password, user.password)) {
+            // Generate new token
             user.token = uuid.v4();
+
+            // Update token in MongoDB
+            await collectionUsers.updateOne(
+                { username: user.username },
+                { $set: { token: user.token } }
+            );
+
             setAuthCookie(res, user.token);
             res.send({ username: user.username });
             // console.log("successful login");
-
             return;
         }
     }
     // console.log("unsuccessful login");
-
     res.status(401).send({ msg: 'Unauthorized' });
 });
+
 
 // DeleteAuth logout a user
 apiRouter.delete('/auth/logout', async (req, res) => {
@@ -88,11 +117,15 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
+    // console.log("verifyAuth");
     const user = await findUser('token', req.cookies[authCookieName]);
+
     if (user) {
+        // console.log(`user retrieved via token: ${user.token}`);
         req.user = user;
         next();
     } else {
+        // console.log(`user not returned from findUser`);
         res.status(401).send({ msg: 'Unauthorized' });
     }
 };
@@ -102,15 +135,16 @@ apiRouter.get('/auth/user', verifyAuth, async (req, res) => {
 });
 
 // GetScores
-apiRouter.get('/events', verifyAuth, (req, res) => {
-    console.log("Attempting to get events")
-    const userEvents = events.filter(event => event.username === req.user.username);
-    console.log(userEvents);
+apiRouter.get('/events', verifyAuth, async (req, res) => {
+    // console.log("Attempting to get events")
+    const userEvents = await collectionEvents.find({username: req.user.username}).toArray();
+    //
+    // console.log(userEvents);
     res.send(userEvents);
 });
 
 // SubmitScore
-apiRouter.post('/event', verifyAuth, (req, res) => {
+apiRouter.post('/event', verifyAuth, async (req, res) => {
     const body = req.body;
 
     const newEvent = {
@@ -119,69 +153,66 @@ apiRouter.post('/event', verifyAuth, (req, res) => {
         end_time: body.end_time,
         username: body.username
     }
-    events.push(newEvent)
+    await collectionEvents.insertOne(newEvent);
+    // events.push(newEvent)
     res.send(newEvent);
 });
 
-apiRouter.delete('/events', verifyAuth, (req, res) => {
-    const username = req.user.username;
+apiRouter.delete('/events', verifyAuth, async (req, res) => {
+    // const username = req.user.username;
 
-    events = events.filter(event => event.username !== username);
+    const result = await collectionEvents.deleteMany({username: req.user.username})
+    // console.log(`Deleted ${result.deletedCount} events`);
 
-    res.status(200).send({ msg: 'Events deleted' });
+    res.status(200).send({msg: 'Events deleted'});
 })
 
-apiRouter.post('/task', verifyAuth, (req, res) => {
+apiRouter.post('/task', verifyAuth, async (req, res) => {
     const body = req.body;
 
     const newTask = {
         title: body.title,
         username: body.username
     }
-    tasks.push(newTask)
+    const result = await collectionTasks.insertOne(newTask);
+    // console.log(`Added? ${result.acknowledged}`);
+    // tasks.push(newTask);
     res.send(newTask);
-    console.log(tasks)
 });
 
-apiRouter.get('/tasks', verifyAuth, (req, res) => {
-    console.log("Attempting to get tasks")
-    const userTasks = tasks.filter(task => task.username === req.user.username);
-    console.log(userTasks);
-    res.send(userTasks);
+apiRouter.get('/tasks', verifyAuth, async (req, res) => {
+    // console.log("Attempting to get tasks")
+    const result = await collectionTasks.find({ username: req.user.username }).toArray();
+    // console.log(result);
+    res.send(result);
 });
 
-apiRouter.delete('/task', verifyAuth, (req, res) => {
+apiRouter.delete('/task', verifyAuth, async (req, res) => {
     const deleteTask = req.body.title;
     const username = req.body.username;
-    console.log("Attempting to delete: ", deleteTask, username)
-    console.log(req.body)
+    // console.log("Attempting to delete: ", deleteTask, username)
+    // console.log(req.body)
 
-    const index = tasks.findIndex(
-        task => task.title === deleteTask && task.username === username
-    );
-
-    if (index !== -1) {
-        tasks.splice(index, 1);
-        res.status(200).send({ msg: 'Task deleted' });
-        console.log("success in deletion")
-    } else {
-        res.status(404).send({ msg: 'Task not found' });
+    const result = await collectionTasks.deleteOne({username: req.body.username, title: req.body.title})
+    if (result.acknowledged) {
+        if (result.deletedCount === 0) {
+            res.status(404).send({msg: 'Task not found'});
+            // console.log("failed to delete task");
+        } else {
+            res.status(200).send({msg: 'Task deleted'});
+            // console.log("success in deletion")
+        }
     }
 });
 
 apiRouter.get('/inspiration', async (req, res) => {
     try {
-        // console.log(1)
         const response = await fetch('https://api.quotable.io/random');
-        // console.log(2)
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        // console.log(3)
         const data = await response.json();
-        // console.log(4)
         res.json({ quote: data.content, author: data.author });
-        // console.log(5)
     } catch (error) {
-        console.error('API Error:', error);
+        // console.error('API Error:', error);
         res.status(500).json({ error: 'Failed to fetch quote' + error.msg });
     }
 });
@@ -199,7 +230,7 @@ async function createUser(username, password) {
         password: passwordHash,
         token: uuid.v4(),
     };
-    users.push(user);
+    await collectionUsers.insertOne(user);
 
     return user;
 }
@@ -207,7 +238,15 @@ async function createUser(username, password) {
 async function findUser(field, value) {
     if (!value) return null;
 
-    return users.find((u) => u[field] === value);
+    const query = {};
+    // console.log(`value: ${value}`);
+    query[field] = value;
+    // console.log(`query: `, query);
+
+    const result = await collectionUsers.findOne( query );
+
+    // console.log(`result: `, result);
+    return result;
 }
 
 // setAuthCookie in the HTTP response

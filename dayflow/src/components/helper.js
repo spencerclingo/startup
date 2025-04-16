@@ -47,8 +47,11 @@ export function useVerifyAuth(username) {
     useEffect(() => {
         const verifyAuth = async () => {
             try {
-                const response = await fetch('/api/auth/user', {
-                    credentials: 'include', // 👈 Send cookies
+                const response = await fetch(`/api/auth/user`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
                 });
                 setAuthState({
                     isLoading: false,
@@ -59,7 +62,7 @@ export function useVerifyAuth(username) {
             }
         };
         verifyAuth();
-    }, [username]);
+    }, []);
 
     return authState;
 }
