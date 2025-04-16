@@ -296,3 +296,20 @@ footer {
 .login-button {
     margin: 3px;
 }
+
+#chat-text {
+    padding: 1em 0;
+}
+.received {
+    color: rgb(153, 87, 148);
+    margin-left: 0.5em;
+}
+.sent {
+    color: rgb(172, 214, 228);
+}
+.system {
+    color: rgb(255, 232, 101);
+}
+.name {
+    padding: 1em 0;
+}
